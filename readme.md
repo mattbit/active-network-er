@@ -7,7 +7,7 @@ The code provides a framework to implement simulations of particle motion on net
 
 Some examples of network structures are provided in graphml format in `resources/graphs`.
 
-The code has been tested on Python 3.5, 3.6, 3.7.
+The code has been tested on Python 3.6, 3.7.
 
 #### Active-flow network generates molecular transport by packets
 
