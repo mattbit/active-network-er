@@ -13,9 +13,9 @@ The code has been tested on Python 3.5, 3.6, 3.7.
 The code to reproduce the figures of “Active flow network generates molecular transport by packets” (Proceedings of the Royal Society B, 2020) by Matteo Dora & David Holcman is provided in the `scripts_prsb` subfolder.
 Each script will run the required simulations and produce the corresponding figures (it can take some time!). Simulation data and figures will be saved in the locations specified in `config.py`.
 
-### Documentation
+### [Documentation](https://mattbit.github.io/active-network-er/)
 
-Documentation can be generated with sphinx using the scripts provided in the `docs` folder.
+Documentation can be found [here](https://mattbit.github.io/active-network-er/) or it can be generated with sphinx (look in `docsrc`).
 
 If you have troubles running the code, you have doubts or need any help, don't hesitate to reach out with any question at matteo.dora@ens.psl.eu!
 
