@@ -1,0 +1,358 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Graphs &mdash; ER simulation framework  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Simulation" href="simulation.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> ER simulation framework
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="model.html">Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="simulation.html">Simulation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Graphs</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#module-er.graph.generator">Generators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#trajectory">Trajectory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-er.graph.utils">Utilities</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">ER simulation framework</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Graphs</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/graph.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="graphs">
+<h1>Graphs<a class="headerlink" href="#graphs" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-er.graph.generator">
+<span id="generators"></span><h2>Generators<a class="headerlink" href="#module-er.graph.generator" title="Permalink to this headline">¶</a></h2>
+<p>A collection of graph generators.</p>
+<p>All the graph generators here create a <code class="xref py py-class docutils literal notranslate"><span class="pre">networkx.Graph</span></code> instance with
+integer node labels increasing from the center (the central node will have index
+equal to 0).</p>
+<dl class="py function">
+<dt id="er.graph.generator.from_matfile">
+<code class="sig-prename descclassname">er.graph.generator.</code><code class="sig-name descname">from_matfile</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">filename</span></em>, <em class="sig-param"><span class="n">adj_key</span><span class="o">=</span><span class="default_value">'C'</span></em>, <em class="sig-param"><span class="n">nodes_key</span><span class="o">=</span><span class="default_value">'nodes'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#er.graph.generator.from_matfile" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generates a graph based on a Matlab file (.mat).</p>
+<p>The Matlab file must contain the adjacency matrix (<cite>C</cite>) and a list of node
+coordinates (<cite>nodes</cite>).</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>filename: The path to the .mat file.
+adj_key: The name of the cell containing the adjacency matrix.
+nodes_key: The name of the cell containing the nodes.</p>
+</dd>
+<dt>Returns:</dt><dd><p>A networkx.Graph instance.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="er.graph.generator.hexagonal_lattice">
+<code class="sig-prename descclassname">er.graph.generator.</code><code class="sig-name descname">hexagonal_lattice</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">num_nodes</span></em>, <em class="sig-param"><span class="n">periodic</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#er.graph.generator.hexagonal_lattice" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generates an hexagonal lattice graph with about <cite>num_nodes</cite> nodes.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>num_nodes: The desired number of nodes. Note that the produced lattice</dt><dd><p>may not have the exact number of nodes specified.</p>
+</dd>
+<dt>periodic: Whether the generated lattice should be periodic (the nodes on</dt><dd><p>the contour will be connected each other). False by default.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>A networkx.Graph instance.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="er.graph.generator.random_regular">
+<code class="sig-prename descclassname">er.graph.generator.</code><code class="sig-name descname">random_regular</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">num_nodes</span></em><span class="sig-paren">)</span><a class="headerlink" href="#er.graph.generator.random_regular" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generates a random 3-regular graph with <cite>num_nodes</cite> nodes.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>num_nodes: The desired number of nodes in the graph.</p>
+</dd>
+<dt>Returns:</dt><dd><p>A networkx.Graph instance.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="trajectory">
+<h2>Trajectory<a class="headerlink" href="#trajectory" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="er.graph.Trajectory">
+<em class="property">class </em><code class="sig-prename descclassname">er.graph.</code><code class="sig-name descname">Trajectory</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">nodes</span></em>, <em class="sig-param"><span class="n">times</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">id</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#er.graph.Trajectory" title="Permalink to this definition">¶</a></dt>
+<dd><p>Trajectory represents a path on a graph.</p>
+<dl class="py method">
+<dt id="er.graph.Trajectory.append">
+<code class="sig-name descname">append</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">node</span></em>, <em class="sig-param"><span class="n">time</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#er.graph.Trajectory.append" title="Permalink to this definition">¶</a></dt>
+<dd><p>Append a new node to the trajectory.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="er.graph.Trajectory.data">
+<code class="sig-name descname">data</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#er.graph.Trajectory.data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Provides a dict containing the main characteristics.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="er.graph.Trajectory.duration">
+<code class="sig-name descname">duration</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#er.graph.Trajectory.duration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the trajectory time duration.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="er.graph.Trajectory.edges">
+<code class="sig-name descname">edges</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#er.graph.Trajectory.edges" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a list of edges on which the particle moved.</p>
+<p>The list may contain self loops (e.g. 3 → 3) if the particle was
+trapped in a node.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="er.graph.Trajectory.end_node">
+<code class="sig-name descname">end_node</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#er.graph.Trajectory.end_node" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the ending node of the trajectory.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="er.graph.Trajectory.fpt">
+<code class="sig-name descname">fpt</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">target</span></em><span class="sig-paren">)</span><a class="headerlink" href="#er.graph.Trajectory.fpt" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the first passage time through <cite>target</cite>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="er.graph.Trajectory.start_node">
+<code class="sig-name descname">start_node</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#er.graph.Trajectory.start_node" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the starting node of the trajectory.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="er.graph.Trajectory.time">
+<code class="sig-name descname">time</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#er.graph.Trajectory.time" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the current trajectory time.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="er.graph.Trajectory.to_dataframe">
+<code class="sig-name descname">to_dataframe</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#er.graph.Trajectory.to_dataframe" title="Permalink to this definition">¶</a></dt>
+<dd><p>Represents the trajectory as DataFrame.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="er.graph.Trajectory.traps">
+<code class="sig-name descname">traps</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#er.graph.Trajectory.traps" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a list of nodes in which the particle got trapped.</p>
+<p>The list may contain multiple occurrences of the same node, meaning
+that the trapping happened multiple times.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-er.graph.utils">
+<span id="utilities"></span><h2>Utilities<a class="headerlink" href="#module-er.graph.utils" title="Permalink to this headline">¶</a></h2>
+<p>Algorithms and utilities for graphs.</p>
+<dl class="py function">
+<dt id="er.graph.utils.k_cores">
+<code class="sig-prename descclassname">er.graph.utils.</code><code class="sig-name descname">k_cores</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">graph</span><span class="p">:</span> <span class="n">networkx.classes.graph.Graph</span></em>, <em class="sig-param"><span class="n">k</span><span class="p">:</span> <span class="n">int</span></em>, <em class="sig-param"><span class="n">inplace</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#er.graph.utils.k_cores" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the components of the k-core graph.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>graph</strong> (<em>networkx.Graph</em>) – An undirected graph.</p></li>
+<li><p><strong>k</strong> (<em>int</em>) – The order of the core.</p></li>
+<li><p><strong>inplace</strong> (<em>bool</em>) – If <cite>True</cite>, the k-core graph will be built directly by
+modifying the instance <cite>graph</cite>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The core graph and a generator of its connected components.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>(core_graph, connected_components)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="simulation.html" class="btn btn-neutral float-left" title="Simulation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Matteo Dora
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

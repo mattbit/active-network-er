@@ -1,0 +1,7 @@
+er.model package
+================
+
+.. automodule:: er.model
+    :members:network,walker
+    :undoc-members:
+    :show-inheritance:

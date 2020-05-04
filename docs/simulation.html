@@ -1,0 +1,330 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Simulation &mdash; ER simulation framework  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Graphs" href="graph.html" />
+    <link rel="prev" title="Models" href="model.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> ER simulation framework
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="model.html">Models</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Simulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="graph.html">Graphs</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">ER simulation framework</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Simulation</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/simulation.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-er.simulation">
+<span id="simulation"></span><h1>Simulation<a class="headerlink" href="#module-er.simulation" title="Permalink to this headline">¶</a></h1>
+<p>The simulations module contains all the tools to simulate the models
+and generate the data needed to perform the analysis.</p>
+<dl class="py class">
+<dt id="er.simulation.Simulation">
+<em class="property">class </em><code class="sig-prename descclassname">er.simulation.</code><code class="sig-name descname">Simulation</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">network</span><span class="p">:</span> <span class="n"><a class="reference internal" href="model.html#er.model.network.NetworkModel" title="er.model.network.NetworkModel">er.model.network.NetworkModel</a></span></em>, <em class="sig-param"><span class="n">walker</span><span class="p">:</span> <span class="n"><a class="reference internal" href="model.html#er.model.walker.Walker" title="er.model.walker.Walker">er.model.walker.Walker</a></span></em>, <em class="sig-param"><span class="n">num_sims</span><span class="o">=</span><span class="default_value">1000</span></em><span class="sig-paren">)</span><a class="headerlink" href="#er.simulation.Simulation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>The base abstract class for simulations.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>walker</strong> (<a class="reference internal" href="model.html#er.model.walker.Walker" title="er.model.walker.Walker"><em>er.model.walker.Walker</em></a>) – A walker agent that moves on the network.</p></li>
+<li><p><strong>network</strong> (<a class="reference internal" href="model.html#er.model.network.NetworkModel" title="er.model.network.NetworkModel"><em>er.model.network.NetworkModel</em></a>) – The network model used for simulating the motion.</p></li>
+<li><p><strong>simulations</strong> (<em>int</em>) – The number of simulations to perform. Default is 1000.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt id="er.simulation.Simulation.run">
+<em class="property">abstract </em><code class="sig-name descname">run</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#er.simulation.Simulation.run" title="Permalink to this definition">¶</a></dt>
+<dd><p>Run the simulation.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="er.simulation.ConcurrentSimulation">
+<em class="property">class </em><code class="sig-prename descclassname">er.simulation.</code><code class="sig-name descname">ConcurrentSimulation</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">network</span><span class="p">:</span> <span class="n"><a class="reference internal" href="model.html#er.model.network.NetworkModel" title="er.model.network.NetworkModel">er.model.network.NetworkModel</a></span></em>, <em class="sig-param"><span class="n">walker</span><span class="p">:</span> <span class="n"><a class="reference internal" href="model.html#er.model.walker.Walker" title="er.model.walker.Walker">er.model.walker.Walker</a></span></em>, <em class="sig-param"><span class="n">num_sims</span><span class="o">=</span><span class="default_value">1000</span></em><span class="sig-paren">)</span><a class="headerlink" href="#er.simulation.ConcurrentSimulation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">er.simulation.simulation.Simulation</span></code></p>
+<p>The base class for concurrent simulations.</p>
+<dl class="py method">
+<dt id="er.simulation.ConcurrentSimulation.run">
+<code class="sig-name descname">run</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">progress</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#er.simulation.ConcurrentSimulation.run" title="Permalink to this definition">¶</a></dt>
+<dd><p>Runs the simulations concurrently.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="er.simulation.MFPTSimulation">
+<em class="property">class </em><code class="sig-prename descclassname">er.simulation.</code><code class="sig-name descname">MFPTSimulation</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">network</span><span class="p">:</span> <span class="n"><a class="reference internal" href="model.html#er.model.network.NetworkModel" title="er.model.network.NetworkModel">er.model.network.NetworkModel</a></span></em>, <em class="sig-param"><span class="n">walker</span><span class="p">:</span> <span class="n"><a class="reference internal" href="model.html#er.model.walker.Walker" title="er.model.walker.Walker">er.model.walker.Walker</a></span></em>, <em class="sig-param"><span class="n">num_sims</span><span class="o">=</span><span class="default_value">1000</span></em><span class="sig-paren">)</span><a class="headerlink" href="#er.simulation.MFPTSimulation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">er.simulation.simulation.ConcurrentSimulation</span></code></p>
+<p>Mean First Passage Time Simulation.</p>
+<p>Simulates independent walkers on a graph and finds the Mean First Passage
+Time for all the nodes. Since all the walkers move on independent networks
+this simulation works well with memoryless implementations of the network.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>walker</strong> (<a class="reference internal" href="model.html#er.model.walker.Walker" title="er.model.walker.Walker"><em>er.model.walker.Walker</em></a>) – A walker agent that moves on the network.</p></li>
+<li><p><strong>network</strong> (<a class="reference internal" href="model.html#er.model.network.NetworkModel" title="er.model.network.NetworkModel"><em>er.model.network.NetworkModel</em></a>) – The network model used for simulating the motion.</p></li>
+<li><p><strong>simulations</strong> (<em>int</em>) – The number of simulations to perform.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt id="er.simulation.MEFPTSimulation">
+<em class="property">class </em><code class="sig-prename descclassname">er.simulation.</code><code class="sig-name descname">MEFPTSimulation</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">network</span><span class="p">:</span> <span class="n"><a class="reference internal" href="model.html#er.model.network.NetworkModel" title="er.model.network.NetworkModel">er.model.network.NetworkModel</a></span></em>, <em class="sig-param"><span class="n">walker</span><span class="p">:</span> <span class="n"><a class="reference internal" href="model.html#er.model.walker.Walker" title="er.model.walker.Walker">er.model.walker.Walker</a></span></em>, <em class="sig-param"><span class="n">num_walkers</span><span class="p">:</span> <span class="n">int</span></em>, <em class="sig-param"><span class="n">num_sims</span><span class="o">=</span><span class="default_value">1000</span></em><span class="sig-paren">)</span><a class="headerlink" href="#er.simulation.MEFPTSimulation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">er.simulation.simulation.ConcurrentSimulation</span></code></p>
+<p>Mean Extreme First Passage Time simulation.</p>
+<p>Simulates many particles and calculates the mean time required for the
+first one to hit the target. It is a generalization of the MFPT simulation
+for multiple particles which are diffusing at the same time.
+This models an activation process where one particle is sufficient to
+activate a target/receptor.</p>
+<p>If you only need to simulate a single particle, use
+<a class="reference internal" href="#er.simulation.MFPTSimulation" title="er.simulation.MFPTSimulation"><code class="xref py py-class docutils literal notranslate"><span class="pre">MFPTSimulation</span></code></a> instead, since it is optimized
+for single particle analysis.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt id="er.simulation.TrajectoryGenerator">
+<em class="property">class </em><code class="sig-prename descclassname">er.simulation.</code><code class="sig-name descname">TrajectoryGenerator</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">network</span><span class="p">:</span> <span class="n"><a class="reference internal" href="model.html#er.model.network.NetworkModel" title="er.model.network.NetworkModel">er.model.network.NetworkModel</a></span></em>, <em class="sig-param"><span class="n">walker</span><span class="p">:</span> <span class="n"><a class="reference internal" href="model.html#er.model.walker.Walker" title="er.model.walker.Walker">er.model.walker.Walker</a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#er.simulation.TrajectoryGenerator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Trajectory generator.</p>
+<p>TrajectoryGenerator simulates an arbitrary number of walkers on a network
+and returns the trajectories of each walker.</p>
+<dl class="py method">
+<dt id="er.simulation.TrajectoryGenerator.trajectories">
+<code class="sig-name descname">trajectories</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">num_walkers</span></em>, <em class="sig-param"><span class="n">max_time</span></em>, <em class="sig-param"><span class="n">start_nodes</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">progress</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#er.simulation.TrajectoryGenerator.trajectories" title="Permalink to this definition">¶</a></dt>
+<dd><p>Simulates the walkers motion for a limited time.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>num_walkers</strong> (<em>int</em>) – The number of walkers to simulate.</p></li>
+<li><p><strong>max_time</strong> (<em>float</em>) – The time at which the simulation will be interrupted.</p></li>
+<li><p><strong>progress</strong> (<em>bool</em>) – Whether to show the progress bar during the simulation.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>trajectories</strong> – A <code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code> containing the trajectories.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>pd.DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="er.simulation.TrajectoryGenerator.trajectories_to_target">
+<code class="sig-name descname">trajectories_to_target</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">num_walkers</span></em>, <em class="sig-param"><span class="n">target</span></em>, <em class="sig-param"><span class="n">keep</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">progress</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#er.simulation.TrajectoryGenerator.trajectories_to_target" title="Permalink to this definition">¶</a></dt>
+<dd><p>Simulates the walkers motion until they hit a given target.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>num_walkers</strong> (<em>int</em>) – The number of walkers to simulate.</p></li>
+<li><p><strong>target</strong> – The target node label.</p></li>
+<li><p><strong>keep</strong> (<em>int</em>) – The number of trajectories to keep (sorted by arrival time).
+For example, if <cite>keep</cite> is 10 only the trajectories of the first
+10 walkers to arrive at the target will be returned. If set to
+<cite>None</cite>, all the trajectories will be returned.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>data</strong> – A <code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code> containing the trajectories.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>pandas.Dataframe</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="graph.html" class="btn btn-neutral float-right" title="Graphs" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="model.html" class="btn btn-neutral float-left" title="Models" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Matteo Dora
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

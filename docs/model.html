@@ -1,0 +1,421 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Models &mdash; ER simulation framework  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Simulation" href="simulation.html" />
+    <link rel="prev" title="ER simulation framework" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> ER simulation framework
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Models</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#module-er.model.network">Network models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-er.model.walker">Walker models</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="simulation.html">Simulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="graph.html">Graphs</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">ER simulation framework</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Models</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/model.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-er.model">
+<span id="models"></span><h1>Models<a class="headerlink" href="#module-er.model" title="Permalink to this headline">¶</a></h1>
+<p>The model of motion is organized into two distinct (but interacting) parts: a
+model for the network structure and a model for the moving agent (walker). The
+network model (<a class="reference internal" href="#er.model.network.NetworkModel" title="er.model.network.NetworkModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">NetworkModel</span></code></a>) is used to represent
+the structure on which the agents move (the underlining graph, edges direction,
+time evolution of the network). Instead, the agent model
+(<a class="reference internal" href="#er.model.walker.Walker" title="er.model.walker.Walker"><code class="xref py py-class docutils literal notranslate"><span class="pre">Walker</span></code></a>) implements the logic of the motion (e.g. how
+is the next move chosen, how much time does it take to cross an edge).
+Different implementations and combination of these entities make it possible to
+flexibly represent different models of motion.</p>
+<div class="section" id="module-er.model.network">
+<span id="network-models"></span><h2>Network models<a class="headerlink" href="#module-er.model.network" title="Permalink to this headline">¶</a></h2>
+<p>Network models represent the structure on which walkers move. Walkers interact
+with the network models by means of the
+<a class="reference internal" href="#er.model.network.NetworkModel.neighbors" title="er.model.network.NetworkModel.neighbors"><code class="xref py py-meth docutils literal notranslate"><span class="pre">neighbors()</span></code></a> method.</p>
+<dl class="py class">
+<dt id="er.model.network.MemorylessSwitch">
+<em class="property">class </em><code class="sig-prename descclassname">er.model.network.</code><code class="sig-name descname">MemorylessSwitch</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">source</span></em>, <em class="sig-param"><span class="n">timescale</span></em><span class="sig-paren">)</span><a class="headerlink" href="#er.model.network.MemorylessSwitch" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A switch object that does not have memory of past events.</p>
+<p>Once its state is queried with <cite>open</cite>, it is not possible to retrieve the
+value of a previous state in time.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt id="er.model.network.NetworkModel">
+<em class="property">class </em><code class="sig-prename descclassname">er.model.network.</code><code class="sig-name descname">NetworkModel</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">graph</span><span class="p">:</span> <span class="n">networkx.classes.graph.Graph</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">params</span></em><span class="sig-paren">)</span><a class="headerlink" href="#er.model.network.NetworkModel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>The base network model.</p>
+<dl class="py method">
+<dt id="er.model.network.NetworkModel.neighbors">
+<em class="property">abstract </em><code class="sig-name descname">neighbors</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">node</span></em>, <em class="sig-param"><span class="n">time</span><span class="o">=</span><span class="default_value">0</span></em><span class="sig-paren">)</span><a class="headerlink" href="#er.model.network.NetworkModel.neighbors" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a list of accessible neighbors of <cite>node</cite>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>node</strong> – The node from which the neighbors are searched.</p></li>
+<li><p><strong>time</strong> (<em>float</em>) – The current time, it is required if the network structure varies
+with time.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="er.model.network.NetworkModel.reset">
+<code class="sig-name descname">reset</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#er.model.network.NetworkModel.reset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Resets the network state.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="er.model.network.NetworkModel.size">
+<code class="sig-name descname">size</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; int<a class="headerlink" href="#er.model.network.NetworkModel.size" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the number of nodes in the network.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="er.model.network.Switch">
+<em class="property">class </em><code class="sig-prename descclassname">er.model.network.</code><code class="sig-name descname">Switch</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">source</span></em>, <em class="sig-param"><span class="n">timescale</span></em>, <em class="sig-param"><span class="n">batch</span><span class="o">=</span><span class="default_value">1000</span></em><span class="sig-paren">)</span><a class="headerlink" href="#er.model.network.Switch" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A switch object that keeps memory of the past states.</p>
+<dl class="py method">
+<dt id="er.model.network.Switch.clear">
+<code class="sig-name descname">clear</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">time</span></em><span class="sig-paren">)</span><a class="headerlink" href="#er.model.network.Switch.clear" title="Permalink to this definition">¶</a></dt>
+<dd><p>Clears the memory of events before given time.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>time: The time limit.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="er.model.network.SwitchingNetwork">
+<em class="property">class </em><code class="sig-prename descclassname">er.model.network.</code><code class="sig-name descname">SwitchingNetwork</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">graph</span><span class="p">:</span> <span class="n">networkx.classes.graph.Graph</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">params</span></em><span class="sig-paren">)</span><a class="headerlink" href="#er.model.network.SwitchingNetwork" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#er.model.network.NetworkModel" title="er.model.network.NetworkModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">er.model.network.NetworkModel</span></code></a></p>
+<p>Network model with switching edge direction.</p>
+<p>SwitchingNetwork implements a directed network where the direction of edges
+changes in time as a Poisson’s process. Walkers moving on this network can
+only move through outward edges (if any).</p>
+<dl class="py method">
+<dt id="er.model.network.SwitchingNetwork.clear_memory">
+<code class="sig-name descname">clear_memory</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">min_time</span></em><span class="sig-paren">)</span><a class="headerlink" href="#er.model.network.SwitchingNetwork.clear_memory" title="Permalink to this definition">¶</a></dt>
+<dd><p>Clears the memory of the switching events before the given time.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="er.model.network.SwitchingNetwork.neighbors">
+<code class="sig-name descname">neighbors</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">node</span></em>, <em class="sig-param"><span class="n">time</span></em><span class="sig-paren">)</span><a class="headerlink" href="#er.model.network.SwitchingNetwork.neighbors" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a list of accessible neighbors of <cite>node</cite>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>node</strong> – The node from which the neighbors are searched.</p></li>
+<li><p><strong>time</strong> (<em>float</em>) – The current time, it is required if the network structure varies
+with time.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="er.model.network.SwitchingNetwork.reset">
+<code class="sig-name descname">reset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#er.model.network.SwitchingNetwork.reset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Resets the network state.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="er.model.network.SwitchingNetworkConstantRate">
+<em class="property">class </em><code class="sig-prename descclassname">er.model.network.</code><code class="sig-name descname">SwitchingNetworkConstantRate</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">graph</span><span class="p">:</span> <span class="n">networkx.classes.graph.Graph</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">params</span></em><span class="sig-paren">)</span><a class="headerlink" href="#er.model.network.SwitchingNetworkConstantRate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#er.model.network.SwitchingNetwork" title="er.model.network.SwitchingNetwork"><code class="xref py py-class docutils literal notranslate"><span class="pre">er.model.network.SwitchingNetwork</span></code></a></p>
+<p>Network model with switching edge direction and constant flow.</p>
+<p>This class is a slightly modified version of
+<a class="reference internal" href="#er.model.network.SwitchingNetwork" title="er.model.network.SwitchingNetwork"><code class="xref py py-class docutils literal notranslate"><span class="pre">SwitchingNetwork</span></code></a>. In this implementation, the
+flow is not split across outward edges. In practical terms it means that
+for a node with <span class="math notranslate nohighlight">\(N\)</span> total edges, of which <span class="math notranslate nohighlight">\(N_{outward}\)</span> are
+outward directed, the particle will move to a neighbor with probability
+<span class="math notranslate nohighlight">\(\frac{N_{outward}}{N}\)</span> and remain in the current node with
+probability <span class="math notranslate nohighlight">\(\frac{1- N_{outward}}{N}\)</span>.</p>
+<dl class="py method">
+<dt id="er.model.network.SwitchingNetworkConstantRate.neighbors">
+<code class="sig-name descname">neighbors</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">node</span></em>, <em class="sig-param"><span class="n">time</span></em><span class="sig-paren">)</span><a class="headerlink" href="#er.model.network.SwitchingNetworkConstantRate.neighbors" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a list of accessible neighbors of <cite>node</cite>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>node</strong> – The node from which the neighbors are searched.</p></li>
+<li><p><strong>time</strong> (<em>float</em>) – The current time, it is required if the network structure varies
+with time.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="er.model.network.UndirectedNetwork">
+<em class="property">class </em><code class="sig-prename descclassname">er.model.network.</code><code class="sig-name descname">UndirectedNetwork</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">graph</span><span class="p">:</span> <span class="n">networkx.classes.graph.Graph</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">params</span></em><span class="sig-paren">)</span><a class="headerlink" href="#er.model.network.UndirectedNetwork" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#er.model.network.NetworkModel" title="er.model.network.NetworkModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">er.model.network.NetworkModel</span></code></a></p>
+<p>Undirected network model.</p>
+<p>UndirectedNetwork is a simple model for the motion on an undirected graph.
+Walkers can go through the edges in both directions, independently of time.</p>
+<dl class="py method">
+<dt id="er.model.network.UndirectedNetwork.neighbors">
+<code class="sig-name descname">neighbors</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">node</span></em>, <em class="sig-param"><span class="n">time</span><span class="o">=</span><span class="default_value">0</span></em><span class="sig-paren">)</span><a class="headerlink" href="#er.model.network.UndirectedNetwork.neighbors" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a list of accessible neighbors of <cite>node</cite>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>node</strong> – The node from which the neighbors are searched.</p></li>
+<li><p><strong>time</strong> (<em>float</em>) – The current time, it is required if the network structure varies
+with time.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-er.model.walker">
+<span id="walker-models"></span><h2>Walker models<a class="headerlink" href="#module-er.model.walker" title="Permalink to this headline">¶</a></h2>
+<p>Walkers represent agents moving on the network. Different implementations
+reflect the different logic used to choose the next move and the parameters of
+motion (e.g. waiting time in the nodes, edge crossing time).</p>
+<dl class="py class">
+<dt id="er.model.walker.ExponentialWalker">
+<em class="property">class </em><code class="sig-prename descclassname">er.model.walker.</code><code class="sig-name descname">ExponentialWalker</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">start</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">params</span></em><span class="sig-paren">)</span><a class="headerlink" href="#er.model.walker.ExponentialWalker" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#er.model.walker.Walker" title="er.model.walker.Walker"><code class="xref py py-class docutils literal notranslate"><span class="pre">er.model.walker.Walker</span></code></a></p>
+<p>ExponentialWalker spends an exponential time in nodes.</p>
+<p>This walker steps to a random neighbor in (random) exponential time.</p>
+<dl class="py method">
+<dt id="er.model.walker.ExponentialWalker.step">
+<code class="sig-name descname">step</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">network</span><span class="p">:</span> <span class="n"><a class="reference internal" href="#er.model.network.NetworkModel" title="er.model.network.NetworkModel">er.model.network.NetworkModel</a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#er.model.walker.ExponentialWalker.step" title="Permalink to this definition">¶</a></dt>
+<dd><p>Move the walker of one step on the network.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="er.model.walker.RandomWalker">
+<em class="property">class </em><code class="sig-prename descclassname">er.model.walker.</code><code class="sig-name descname">RandomWalker</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">start</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">params</span></em><span class="sig-paren">)</span><a class="headerlink" href="#er.model.walker.RandomWalker" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#er.model.walker.Walker" title="er.model.walker.Walker"><code class="xref py py-class docutils literal notranslate"><span class="pre">er.model.walker.Walker</span></code></a></p>
+<p>RandomWalker is a standard random walker.</p>
+<p>The random walker steps to a random neighboring node.</p>
+<dl class="py method">
+<dt id="er.model.walker.RandomWalker.step">
+<code class="sig-name descname">step</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">network</span><span class="p">:</span> <span class="n"><a class="reference internal" href="#er.model.network.NetworkModel" title="er.model.network.NetworkModel">er.model.network.NetworkModel</a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#er.model.walker.RandomWalker.step" title="Permalink to this definition">¶</a></dt>
+<dd><p>Move the walker of one step on the network.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="er.model.walker.Walker">
+<em class="property">class </em><code class="sig-prename descclassname">er.model.walker.</code><code class="sig-name descname">Walker</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">start</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#er.model.walker.Walker" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Base graph walker.</p>
+<dl class="py method">
+<dt id="er.model.walker.Walker.step">
+<em class="property">abstract </em><code class="sig-name descname">step</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">network</span><span class="p">:</span> <span class="n"><a class="reference internal" href="#er.model.network.NetworkModel" title="er.model.network.NetworkModel">er.model.network.NetworkModel</a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#er.model.walker.Walker.step" title="Permalink to this definition">¶</a></dt>
+<dd><p>Move the walker of one step on the network.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="simulation.html" class="btn btn-neutral float-right" title="Simulation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="ER simulation framework" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Matteo Dora
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

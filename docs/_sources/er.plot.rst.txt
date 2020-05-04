@@ -1,0 +1,22 @@
+er.plot package
+===============
+
+Submodules
+----------
+
+er.plot.mfpt module
+-------------------
+
+.. automodule:: er.plot.mfpt
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+
+Module contents
+---------------
+
+.. automodule:: er.plot
+    :members:
+    :undoc-members:
+    :show-inheritance:
