@@ -29,4 +29,4 @@ The code was written by Matteo Dora (matteo.dora@ens.psl.eu) at the Biology Depa
 
 ### License
 
-The code is released with GPLv3 license.
+The code is released under the GPLv3 license (see `LICENSE`).
