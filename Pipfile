@@ -5,7 +5,7 @@ verify_ssl = true
 
 [dev-packages]
 pytest = "*"
-python-language-server = {extras = ["all"],version = "==0.31.10"}
+python-language-server = {extras = ["all"]}
 sphinx = "*"
 sphinx-rtd-theme = "*"
 pytest-cov = "*"
