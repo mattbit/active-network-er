@@ -2,6 +2,7 @@
 
 [![Build Status](https://travis-ci.com/mattbit/active-network-er.svg?token=zKpBnjBx4d1NEMb7zFbd&branch=master)](https://travis-ci.com/mattbit/active-network-er)
 [![GPLv3 license](https://img.shields.io/badge/License-GPLv3-blue.svg)](http://perso.crans.org/besson/LICENSE.html)
+[![DOI](https://zenodo.org/badge/261190024.svg)](https://zenodo.org/badge/latestdoi/261190024)
 
 The code provides a framework to implement simulations of particle motion on networks. Different models can be used for the network and the particle behaviour. In particular, the code provides an implementation of the active-flow network model to describe motion on the endoplasmic reticulum.
 
