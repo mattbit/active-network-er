@@ -29,7 +29,7 @@ Development is done using `pipenv` to manage dependencies. Tests can be run with
 
 ### Authors
 
-The code was written by Matteo Dora (matteo.dora@ens.psl.eu) at the Biology Department of the École Normale Supérieure in Paris.
+The code was written by Matteo Dora (matteo.dora@ens.psl.eu) at the Biology Department of the École Normale Supérieure in Paris as part of his PhD thesis at [David Holcman's lab](https://github.com/holcman-lab).
 
 ### License
 
