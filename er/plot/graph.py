@@ -21,7 +21,7 @@ def _hex_periodic_edges(graph):
 
         return np.hypot(*np.subtract(x_u, x_v))
 
-    return [edge for edge in graph.edges if _length(edge) > 1.5]
+    return [edge for edge in graph.edges if _length(edge) > 2]
 
 
 def heatmap(graph: nx.Graph, node_values=None, edge_values=None, cmap=None,

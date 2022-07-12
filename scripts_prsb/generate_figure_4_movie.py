@@ -5,6 +5,8 @@ from tqdm import tqdm
 from config import FIGURES_PATH
 
 import er.plot as erplot
+from er.simulation import TrajectoryGenerator
+from er.model import SwitchingNetwork, ExponentialWalker
 from er.utils import load_graph, load_data, data_path, reduce_trajs_steps, count_nodes
 
 

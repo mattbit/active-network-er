@@ -56,7 +56,7 @@ class TrajectoryGenerator:
                 walkers[i].start = node
                 walkers[i].node = node
 
-        times = np.array([w.time for w in walkers], dtype=np.float)
+        times = np.array([w.time for w in walkers], dtype=float)
 
         trajs = [Trajectory([w.node], [w.time], id=k)
                  for k, w in enumerate(walkers)]
@@ -115,7 +115,7 @@ class TrajectoryGenerator:
         walkers = np.array([copy(self.walker) for _ in range(num_walkers)])
 
         active_idx = set(range(num_walkers))
-        times = np.array([w.time for w in walkers], dtype=np.float)
+        times = np.array([w.time for w in walkers], dtype=float)
 
         paths = np.array([Trajectory([w.node], times=[w.time], id=i)
                           for i, w in enumerate(walkers)])

@@ -67,13 +67,86 @@ def hexagonal_lattice(num_nodes, periodic=False):
             if "contraction" in data:
                 del data["contraction"]
 
-
     # Split the position in two distinct keys
     for node, data in lattice.nodes(data=True):
         data["x"], data["y"] = data["pos"]
         del data["pos"]
 
     return _relabel_nodes_by_distance(lattice, spatial_center=True)
+
+
+def hex_tri_lattice():
+    m = 60
+    n = 120
+
+    graph = nx.generators.triangular_lattice_graph(m, n)
+
+    graph.graph["label"] = "Hexagonal + triangular lattice"
+
+    # Split the position in two distinct keys
+    for node, data in graph.nodes(data=True):
+        data["x"], data["y"] = data["pos"]
+        del data["pos"]
+
+    # Periodicity
+    for i in range(n // 2 + 1):
+        node = (i, 0)
+        graph.add_edges_from([(node, n) for n in graph.adj[(i, m)]])
+
+    for i in range(n // 2 + 1):
+        graph.remove_node((i, m))
+
+    for i in range(n // 4 + 2, n // 2, 3):
+        for j in range(1, m, 2):
+            try:
+                graph.remove_node((i, j))
+            except nx.NetworkXError:
+                pass
+    for i in range(n // 4 + 1, n // 2, 3):
+        for j in range(0, m + 1, 2):
+            try:
+                graph.remove_node((i, j))
+            except nx.NetworkXError:
+                pass
+
+    return _relabel_nodes_by_distance(graph, spatial_center=True)
+
+
+def hex_connectivity_lattice():
+    m = 60
+    n = 120
+
+    graph = nx.generators.triangular_lattice_graph(m, n)
+
+    graph.graph["label"] = "Hexagonal + triangular lattice"
+
+    # Split the position in two distinct keys
+    for node, data in graph.nodes(data=True):
+        data["x"], data["y"] = data["pos"]
+        del data["pos"]
+
+    # Periodicity
+    for i in range(n // 2 + 1):
+        node = (i, 0)
+        graph.add_edges_from([(node, n) for n in graph.adj[(i, m)]])
+
+    for i in range(n // 2 + 1):
+        graph.remove_node((i, m))
+
+    for i in range(n // 4 + 2, n // 2, 3):
+        for j in range(1, m, 2):
+            try:
+                graph.remove_node((i, j))
+            except nx.NetworkXError:
+                pass
+    for i in range(n // 4 + 1, n // 2, 3):
+        for j in range(0, m + 1, 2):
+            try:
+                graph.remove_node((i, j))
+            except nx.NetworkXError:
+                pass
+
+    return _relabel_nodes_by_distance(graph, spatial_center=True)
 
 
 def from_matfile(filename, adj_key="C", nodes_key="nodes"):

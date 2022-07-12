@@ -129,7 +129,7 @@ class MEFPTSimulation(ConcurrentSimulation):
         fpt = np.full(network.size(), np.inf)
         fpt[self.walker.node] = self.walker.time
 
-        times = np.array([w.time for w in walkers], dtype=np.float)
+        times = np.array([w.time for w in walkers], dtype=float)
 
         steps = 0
         while times.min() < fpt.max():
