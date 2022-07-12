@@ -36,9 +36,9 @@ class NetworkModel:
     @property
     def meta(self) -> dict:
         return {
-            'model': self.__class__.__name__,
-            'params': self.params,
-            'graph': self.graph.name
+            "model": self.__class__.__name__,
+            "params": self.params,
+            "graph": self.graph.name,
         }
 
     @abstractmethod
@@ -109,8 +109,9 @@ class SwitchingNetwork(NetworkModel):
             data["switch"].clear(min_time)
 
     def neighbors(self, node, time):
-        return [n for n, data in self.graph[node].items()
-                if data["switch"].open(node, time)]
+        return [
+            n for n, data in self.graph[node].items() if data["switch"].open(node, time)
+        ]
 
     def edges(self, time):
         for source, target, data in self.graph.edges(data=True):
@@ -132,8 +133,10 @@ class SwitchingNetworkConstantRate(SwitchingNetwork):
     """
 
     def neighbors(self, node, time):
-        return [n if data["switch"].open(node, time) else node
-                for n, data in self.graph[node].items()]
+        return [
+            n if data["switch"].open(node, time) else node
+            for n, data in self.graph[node].items()
+        ]
 
 
 class MemorylessSwitch:
@@ -164,7 +167,7 @@ class MemorylessSwitch:
         return not (source == self.source) ^ (self.status)  # xnor
 
     def reset(self):
-        self.time = 0.
+        self.time = 0.0
         self.status = random.randint(0, 1)
 
 
@@ -176,11 +179,11 @@ class Switch:
         self.init = 1 if random.random() < 0.5 else 0
         self.timescale = timescale
         self.batch = batch
-        self.switch_times = np.array([0.])
+        self.switch_times = np.array([0.0])
 
     def reset(self):
         self.init = 1 if random.random() < 0.5 else 0
-        self.switch_times = np.array([0.])
+        self.switch_times = np.array([0.0])
 
     def open(self, source, time):
         # Expand lifespan if required.
@@ -192,8 +195,7 @@ class Switch:
 
         return not (
             (source == self.source)
-            ^ (1 + self.init
-               + bisect.bisect(self.switch_times, time)) % 2
+            ^ (1 + self.init + bisect.bisect(self.switch_times, time)) % 2
         )  # xnor
 
     def _expand_times(self):
@@ -212,8 +214,7 @@ class Switch:
         if self.switch_times[-1] < time:
             interval = time - self.switch_times[-1]
             num_events = np.random.poisson(interval / self.timescale)
-            self.init = (
-                self.open(self.source, self.switch_times[-1]) + num_events) % 2
+            self.init = (self.open(self.source, self.switch_times[-1]) + num_events) % 2
             self.switch_times = np.array([time])
         else:
             self.init = self.open(self.source, time)
