@@ -8,7 +8,7 @@ The code provides a framework to implement simulations of particle motion on net
 
 Some examples of network structures are provided in graphml format in `resources/graphs`.
 
-The code has been tested on Python 3.6, 3.7.
+The code has been tested on Python 3.10.
 
 #### Active-flow network generates molecular transport by packets
 
@@ -25,7 +25,7 @@ If you have troubles running the code, you have doubts or need any help, don't h
 
 ### Development
 
-Development is done using `pipenv` to manage dependencies. Tests can be run with python's `unittest` (`$ python -m unittest discover test`) or with `pytest`.
+Development is done using `poetry` to manage dependencies. Tests can be run with python's `unittest` (`$ python -m unittest discover test`) or with `pytest`.
 
 ### Authors
 
