@@ -154,9 +154,12 @@ class MemorylessSwitch:
         if interval < 0:
             raise Exception("Switch has no memory of previous time!")
 
+        p_switch = (1 - np.exp(-2 * interval / self.timescale)) / 2
+
+        if np.random.rand() <= p_switch:
+            self.status = (self.status + 1) % 2
+
         self.time = time
-        self.status = (
-            self.status + np.random.poisson(interval / self.timescale)) % 2
 
         return not (source == self.source) ^ (self.status)  # xnor
 
