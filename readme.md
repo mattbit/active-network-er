@@ -21,7 +21,7 @@ The published article can be found [here](https://royalsocietypublishing.org/doi
 
 Documentation can be found [here](https://mattbit.github.io/active-network-er/) or it can be generated with sphinx (look in `docsrc`).
 
-If you have troubles running the code, you have doubts or need any help, don't hesitate to reach out with any question at matteo.dora@ens.psl.eu!
+If you have troubles running the code, you have doubts or need any help, don't hesitate to reach out with any question at matteo.dora@ieee.org!
 
 ### Development
 
@@ -29,7 +29,7 @@ Development is done using `poetry` to manage dependencies. Tests can be run with
 
 ### Authors
 
-The code was written by Matteo Dora (matteo.dora@ens.psl.eu) at the Biology Department of the École Normale Supérieure in Paris as part of his PhD thesis at [David Holcman's lab](https://github.com/holcman-lab).
+The code was written by Matteo Dora (matteo.dora@ieee.org) at the Biology Department of the École Normale Supérieure in Paris as part of his PhD thesis at [David Holcman's lab](https://github.com/holcman-lab).
 
 ### License
 
